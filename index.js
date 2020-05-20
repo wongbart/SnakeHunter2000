@@ -78,12 +78,12 @@ function safe(x, y) {
         return 0;
     }
   
-var snakeNum = data.board.snakes.length - 1
+var snakeNum = data.board.snakes.length
 //console.log(data.board.snakes)
 var snakeCur = 0;
 var pos = 4;
 while (snakeNum > 0) {
-  console.log(data.board.snakes[snakeCur].length >= data.you.length)
+  //console.log(data.board.snakes[snakeCur].length >= data.you.length)
   if (data.board.snakes[snakeCur].id != data.you.id) {
     if (data.board.snakes[snakeCur].body[0].x == x - 1 && data.board.snakes[snakeCur].body[0].y == y && 
         data.board.snakes[snakeCur].length > data.you.length) {
