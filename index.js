@@ -131,24 +131,74 @@ while (snakeNum > 0) {
         return 0
     }
 }
-/*  
-if (pick(choice) != 1) {
-    if (pick(1) != 1) {
-      if (pick(2) != 1) {
-        choice = 3 
-      } else {
-        choice = 2;
-    }
- } else {
-      choice = 1;
-  }
-} */
+
   var final = 50
   //var final2 = 50
   while (pick(choice) != 1 && final != 0) {
     choice = Math.floor(Math.random() * possible_moves.length);
     //console.log(choice)
     --final
+  }
+  
+  if (final == 0) {
+    function safe(x, y) {
+    var safest = 0;
+    const cord = [x, y]
+    var count = data.board.snakes.length
+    var count2 = 0
+    var con = 0
+    var con2 = 0
+    while (count > 0) { 
+      con = data.board.snakes[count2].body.length
+      con2 = 0 
+      while (con > 0) {
+              if (data.board.snakes[count2].body[con2].x == x && data.board.snakes[count2].body[con2].y == y) {
+              ++safest
+              break
+          }
+        --con
+        ++con2
+      }
+      --count
+      ++count2
+    }
+    if (x == data.board.width || x < 0 || y == data.board.height || y < 0) {
+        return 0;
+    }
+      
+    if (safest == 0) {
+      return 1
+    } else {
+      return 0
+    }
+}
+  
+  function pick(num) {
+    var safety = 1;
+    if (num == 0) {
+        safety = safe(data.you.body[0].x, data.you.body[0].y - 1)
+    } else if (num == 1) {
+        safety = safe(data.you.body[0].x, data.you.body[0].y + 1)
+    } else if (num == 2) {
+        safety = safe(data.you.body[0].x - 1, data.you.body[0].y)
+    } else {
+        safety = safe(data.you.body[0].x + 1, data.you.body[0].y)
+    }
+
+    if (safety == 1) {
+        return 1
+    } else {
+        return 0
+    }
+}
+
+  var final = 50
+  //var final2 = 50
+  while (pick(choice) != 1 && final != 0) {
+    choice = Math.floor(Math.random() * possible_moves.length);
+    //console.log(choice)
+    --final
+  }
   }
   var snake_move = possible_moves[choice];
   
